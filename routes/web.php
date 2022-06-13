@@ -8,6 +8,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\ChangePass;
 use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
@@ -121,3 +122,8 @@ Route::middleware([
     })->name('dashboard');
 });
 Route::get('/user/logout',[BrandController::class,'Logout'])->name('user.logout');
+
+//Change password And profile Route
+Route::get('/user/cpassword',[ChangePass::class,'Cpassword'])->name('change.password');
+
+
