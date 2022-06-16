@@ -25,7 +25,11 @@ class ServicesController extends Controller
             'short_dis' => $request->short_dis,
             'created_at'=> Carbon::now()
         ]);
-        return Redirect()->route('home.services')->with('success','Services Inserted Successfully');
+        $notification = array(
+            'message' => 'Services Added Successfully',
+            'alert-type'=>'success'
+        );
+        return Redirect()->route('home.services')->with($notification);
     }
     public function EditService($id)
     {
@@ -39,12 +43,20 @@ class ServicesController extends Controller
             'short_dis' => $request->short_dis,
             
         ]);
-        return Redirect()->route('home.services')->with('success','Services Updated Successfully');
+        $notification = array(
+            'message' => 'Services Updated Successfully',
+            'alert-type'=>'info'
+        );
+        return Redirect()->route('home.services')->with($notification);
     }
 
     public function DeleteService($id)
     {
         $delete = HomeService::find($id)->Delete();
-        return Redirect()->back()->with('success','Service Deleted Successfully');
+        $notification = array(
+            'message' => 'Services Deleted Successfully',
+            'alert-type'=>'error'
+        );
+        return Redirect()->route('home.services')->with($notification);
     }
 }

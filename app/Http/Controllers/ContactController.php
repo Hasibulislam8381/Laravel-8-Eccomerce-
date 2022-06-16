@@ -27,7 +27,11 @@ class ContactController extends Controller
         'phone' => $request->phone,
         'created_at'=> Carbon::now()
     ]);
-    return Redirect()->route('admin.contact')->with('success','Contact Inserted Successfully');
+    $notification = array(
+      'message' => 'Contact Inserted Successfully',
+      'alert-type'=>'success'
+  );
+  return Redirect()->route('admin.contact')->with($notification);
   }
 
   public function EditContact($id)
@@ -43,12 +47,20 @@ class ContactController extends Controller
       'phone' => $request->phone
       
   ]);
-  return Redirect()->route('admin.contact')->with('success','Contact Updated Successfully');
+  $notification = array(
+    'message' => 'Contact Updated Successfully',
+    'alert-type'=>'info'
+);
+return Redirect()->route('admin.contact')->with($notification);
   }
   public function DeleteContact($id)
   {
     $delete = Contact::find($id)->Delete();
-        return Redirect()->back()->with('success','Contact Deleted Successfully');
+    $notification = array(
+      'message' => 'Contact deleted Successfully',
+      'alert-type'=>'error'
+  );
+  return Redirect()->route('admin.contact')->with($notification);
   }
   public function Contact()
   {
@@ -77,7 +89,11 @@ class ContactController extends Controller
   public function ContactMessageDelete($id)
   {
     $messages = Contactform::find($id)->delete();
-    return redirect()->back()->with('success','User Message Deleted Successfully');
+    $notification = array(
+      'message' => 'Contact Message deleted Successfully',
+      'alert-type'=>'error'
+  );
+  return Redirect()->route('contact.message')->with($notification);
   }
 }
 

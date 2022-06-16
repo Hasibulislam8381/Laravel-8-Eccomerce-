@@ -125,5 +125,8 @@ Route::get('/user/logout',[BrandController::class,'Logout'])->name('user.logout'
 
 //Change password And profile Route
 Route::get('/user/cpassword',[ChangePass::class,'Cpassword'])->name('change.password');
+Route::post('/password/update',[ChangePass::class,'PassUpdate'])->name('password.update');
 
-
+//profile Update
+Route::get('/profile/update',[ChangePass::class,'Pupdate'])->name('profile.update');
+Route::post('/profile/update/user',[ChangePass::class,'Profileupdate'])->name('update.user.profile');
